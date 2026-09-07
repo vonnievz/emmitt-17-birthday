@@ -24,7 +24,9 @@ body {
   color: white;
 }
 
-/* MAIN SCENE */
+/* =========================
+   MAIN ARTWORK
+========================= */
 
 .hero {
   position: relative;
@@ -46,9 +48,22 @@ body {
 
   box-shadow:
     0 0 45px rgba(0,0,0,.45);
+
+  opacity: 0;
+  transform: scale(.97);
+  transition:
+    opacity 1s ease,
+    transform 1.2s ease;
 }
 
-/* OPENING SCREEN */
+.hero-image.reveal {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================
+   OPENING SCREEN
+========================= */
 
 .intro {
   position: fixed;
@@ -177,54 +192,104 @@ body {
     0 14px 25px rgba(0,0,0,.25);
 }
 
-/* BUILD AGAIN BUTTON */
+.tap-btn:hover {
+  transform: translateY(-3px);
+}
 
-.build-btn {
+.tap-btn:active {
+  transform: translateY(4px);
+}
+
+/* =========================
+   COUNTDOWN SCREEN
+========================= */
+
+.countdown-screen {
   position: fixed;
+  inset: 0;
 
-  left: 50%;
-  bottom: 18px;
+  z-index: 80;
 
-  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  z-index: 30;
-
-  padding: 14px 24px;
-
-  border: 4px solid #111;
-  border-radius: 18px;
+  pointer-events: none;
 
   background:
-    linear-gradient(#2085f0, #0759c8);
+    radial-gradient(circle at center,
+      rgba(15,88,177,.78),
+      rgba(2,20,47,.92));
 
-  color: white;
+  opacity: 0;
 
-  font-size: 17px;
-  font-weight: 900;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 7px 0 #111,
-    0 12px 25px rgba(0,0,0,.38);
+  transition: opacity .35s ease;
 }
 
-.build-btn:hover {
+.countdown-screen.active {
+  opacity: 1;
+}
+
+.countdown-number {
+  font-size: clamp(100px, 30vw, 260px);
+
+  font-weight: 1000;
+
+  color: #ffd51b;
+
+  text-shadow:
+    6px 6px 0 #111,
+    10px 10px 0 rgba(0,0,0,.25);
+
+  opacity: 0;
+
   transform:
-    translateX(-50%)
-    translateY(-3px);
+    scale(.45)
+    rotate(-8deg);
 }
 
-.build-btn:active {
-  transform:
-    translateX(-50%)
-    translateY(4px);
-
-  box-shadow:
-    0 2px 0 #111;
+.countdown-number.show {
+  animation:
+    countdownPop .9s ease forwards;
 }
 
-/* EFFECTS LAYER */
+@keyframes countdownPop {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(.4)
+      rotate(-7deg);
+  }
+
+  18% {
+    opacity: 1;
+
+    transform:
+      scale(1.12)
+      rotate(2deg);
+  }
+
+  65% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      scale(.9);
+  }
+
+}
+
+/* =========================
+   EFFECTS
+========================= */
 
 #effects {
   position: fixed;
@@ -232,8 +297,8 @@ body {
 
   z-index: 50;
 
-  pointer-events: none;
   overflow: hidden;
+  pointer-events: none;
 }
 
 /* CONFETTI */
@@ -253,6 +318,7 @@ body {
 }
 
 @keyframes confettiFall {
+
   from {
     transform:
       translateY(-40px)
@@ -266,8 +332,9 @@ body {
       translateY(105vh)
       rotate(720deg);
 
-    opacity: .85;
+    opacity: .8;
   }
+
 }
 
 /* SPARKLES */
@@ -277,18 +344,19 @@ body {
 
   top: -40px;
 
-  font-size: 18px;
+  font-size: 20px;
 
   animation:
     sparkleFall linear forwards;
 }
 
 @keyframes sparkleFall {
+
   from {
     transform:
       translateY(-40px)
-      rotate(0deg)
-      scale(.7);
+      scale(.6)
+      rotate(0deg);
 
     opacity: 1;
   }
@@ -296,16 +364,19 @@ body {
   to {
     transform:
       translateY(100vh)
-      rotate(420deg)
-      scale(1.1);
+      scale(1.2)
+      rotate(450deg);
 
     opacity: .2;
   }
+
 }
 
-/* LEVEL MESSAGE */
+/* =========================
+   BIRTHDAY MESSAGE
+========================= */
 
-.build-message {
+.birthday-message {
   position: fixed;
 
   top: 50%;
@@ -313,39 +384,43 @@ body {
 
   transform:
     translate(-50%, -50%)
-    scale(.8);
+    scale(.6);
 
   z-index: 70;
+
+  width: min(88vw, 680px);
+
+  padding: 22px 26px;
+
+  border: 5px solid #111;
+  border-radius: 18px;
 
   background:
     linear-gradient(#ffd92a, #efb900);
 
   color: #111;
 
-  border: 5px solid #111;
-  border-radius: 16px;
-
-  padding: 18px 26px;
-
-  font-size: clamp(24px, 7vw, 50px);
-  font-weight: 1000;
-
   text-align: center;
 
+  font-size: clamp(28px, 7vw, 58px);
+  line-height: 1.05;
+  font-weight: 1000;
+
   box-shadow:
-    8px 8px 0 #111;
+    9px 9px 0 #111;
 
   opacity: 0;
 
   pointer-events: none;
 }
 
-.build-message.show {
+.birthday-message.show {
   animation:
-    popMessage 1.15s ease forwards;
+    birthdayPop 2s ease forwards;
 }
 
-@keyframes popMessage {
+@keyframes birthdayPop {
+
   0% {
     opacity: 0;
 
@@ -355,16 +430,16 @@ body {
       rotate(-4deg);
   }
 
-  20% {
+  15% {
     opacity: 1;
 
     transform:
       translate(-50%, -50%)
-      scale(1.07)
+      scale(1.06)
       rotate(1deg);
   }
 
-  70% {
+  65% {
     opacity: 1;
 
     transform:
@@ -379,25 +454,109 @@ body {
       translate(-50%, -50%)
       scale(.95);
   }
+
 }
 
-/* MOBILE */
+/* =========================
+   REPLAY BUTTON
+========================= */
+
+.replay-btn {
+  position: fixed;
+
+  left: 50%;
+  bottom: 18px;
+
+  transform: translateX(-50%);
+
+  z-index: 30;
+
+  padding: 14px 24px;
+
+  border: 4px solid #111;
+  border-radius: 18px;
+
+  background:
+    linear-gradient(#2085f0, #0759c8);
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 0 #111,
+    0 12px 25px rgba(0,0,0,.38);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity .5s ease;
+}
+
+.replay-btn.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.replay-btn:hover {
+  transform:
+    translateX(-50%)
+    translateY(-3px);
+}
+
+.replay-btn:active {
+  transform:
+    translateX(-50%)
+    translateY(4px);
+
+  box-shadow:
+    0 2px 0 #111;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
-  .build-btn {
-    font-size: 14px;
-    padding: 11px 17px;
+
+  .replay-btn {
     bottom: 12px;
+
+    font-size: 14px;
+
+    padding: 11px 17px;
   }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- OPENING SCREEN -->
+<!-- AUDIO -->
 
-<div class="intro" id="intro">
+<audio
+  id="birthdayAudio"
+  preload="auto"
+>
+  <source
+    src="birthday-countdown.m4a"
+    type="audio/mp4"
+  >
+</audio>
+
+
+<!-- OPENING -->
+
+<div
+  class="intro"
+  id="intro"
+>
 
   <div class="intro-card">
 
@@ -415,12 +574,27 @@ body {
 
     <button
       class="tap-btn"
-      onclick="startCard()"
+      onclick="startExperience()"
     >
-      🧱 TAP TO BUILD
+      🔊 TAP TO BUILD
     </button>
 
   </div>
+
+</div>
+
+
+<!-- COUNTDOWN -->
+
+<div
+  class="countdown-screen"
+  id="countdownScreen"
+>
+
+  <div
+    class="countdown-number"
+    id="countdownNumber"
+  ></div>
 
 </div>
 
@@ -430,13 +604,15 @@ body {
 <div id="effects"></div>
 
 
-<!-- LEVEL MESSAGE -->
+<!-- BIRTHDAY MESSAGE -->
 
 <div
-  class="build-message"
-  id="buildMessage"
+  class="birthday-message"
+  id="birthdayMessage"
 >
-  LEVEL 17 UNLOCKED!
+  🎉 HAPPY 17TH BIRTHDAY,
+  <br>
+  EMMITT! 🎉
 </div>
 
 
@@ -448,18 +624,20 @@ body {
     src="emmitt-birthday-hero.png"
     alt="Happy 17th Birthday Emmitt"
     class="hero-image"
+    id="heroImage"
   >
 
 </main>
 
 
-<!-- BUILD AGAIN -->
+<!-- REPLAY -->
 
 <button
-  class="build-btn"
-  onclick="celebrate()"
+  class="replay-btn"
+  id="replayButton"
+  onclick="replayExperience()"
 >
-  ✨ BUILD AGAIN
+  🔊 PLAY AGAIN
 </button>
 
 
@@ -474,16 +652,68 @@ const colors = [
   "#ffffff"
 ];
 
+let timers = [];
 
-/* CONFETTI */
+
+/* =========================
+   TIMER CONTROL
+========================= */
+
+function clearTimers() {
+
+  timers.forEach(timer => {
+
+    clearTimeout(timer);
+
+  });
+
+  timers = [];
+
+}
+
+
+/* =========================
+   COUNTDOWN DISPLAY
+========================= */
+
+function showCount(number) {
+
+  const el =
+    document.getElementById(
+      "countdownNumber"
+    );
+
+  el.textContent =
+    number;
+
+  el.classList.remove(
+    "show"
+  );
+
+  void el.offsetWidth;
+
+  el.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
 
 function makeConfetti() {
 
   const effects =
-    document.getElementById("effects");
+    document.getElementById(
+      "effects"
+    );
 
   const piece =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   piece.className =
     "confetti";
@@ -495,7 +725,8 @@ function makeConfetti() {
   piece.style.background =
     colors[
       Math.floor(
-        Math.random() * colors.length
+        Math.random() *
+        colors.length
       )
     ];
 
@@ -508,23 +739,34 @@ function makeConfetti() {
     Math.random() * .25 +
     "s";
 
-  effects.appendChild(piece);
+  effects.appendChild(
+    piece
+  );
 
   setTimeout(() => {
+
     piece.remove();
+
   }, 5000);
+
 }
 
 
-/* SPARKLES */
+/* =========================
+   SPARKLES
+========================= */
 
 function makeSparkle() {
 
   const effects =
-    document.getElementById("effects");
+    document.getElementById(
+      "effects"
+    );
 
   const sparkle =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   sparkle.className =
     "sparkle";
@@ -547,47 +789,38 @@ function makeSparkle() {
     Math.random() * .3 +
     "s";
 
-  effects.appendChild(sparkle);
+  effects.appendChild(
+    sparkle
+  );
 
   setTimeout(() => {
+
     sparkle.remove();
+
   }, 5200);
+
 }
 
 
-/* CELEBRATION */
+/* =========================
+   CELEBRATION
+========================= */
 
 function celebrate() {
 
-  for (
-    let i = 0;
-    i < 55;
-    i++
-  ) {
+  const hero =
+    document.getElementById(
+      "heroImage"
+    );
 
-    setTimeout(() => {
-      makeConfetti();
-    }, i * 25);
-
-  }
-
-
-  for (
-    let i = 0;
-    i < 12;
-    i++
-  ) {
-
-    setTimeout(() => {
-      makeSparkle();
-    }, i * 100);
-
-  }
+  hero.classList.add(
+    "reveal"
+  );
 
 
   const message =
     document.getElementById(
-      "buildMessage"
+      "birthdayMessage"
     );
 
   message.classList.remove(
@@ -600,20 +833,242 @@ function celebrate() {
     "show"
   );
 
+
+  for (
+    let i = 0;
+    i < 65;
+    i++
+  ) {
+
+    setTimeout(() => {
+
+      makeConfetti();
+
+    }, i * 22);
+
+  }
+
+
+  for (
+    let i = 0;
+    i < 16;
+    i++
+  ) {
+
+    setTimeout(() => {
+
+      makeSparkle();
+
+    }, i * 80);
+
+  }
+
+
+  timers.push(
+
+    setTimeout(() => {
+
+      document
+        .getElementById(
+          "replayButton"
+        )
+        .classList.add(
+          "show"
+        );
+
+    }, 2200)
+
+  );
+
 }
 
 
-/* START CARD */
+/* =========================
+   COUNTDOWN
+========================= */
 
-function startCard() {
+function runCountdownSequence() {
+
+  const screen =
+    document.getElementById(
+      "countdownScreen"
+    );
+
+  screen.classList.add(
+    "active"
+  );
+
+
+  /*
+    Timed to the uploaded audio.
+  */
+
+  const countdown = [
+
+    { number: "10", time: 1450 },
+    { number: "9",  time: 2450 },
+    { number: "8",  time: 3550 },
+    { number: "7",  time: 4650 },
+    { number: "6",  time: 5750 },
+    { number: "5",  time: 6700 },
+    { number: "4",  time: 7650 },
+    { number: "3",  time: 8600 },
+    { number: "2",  time: 9650 },
+    { number: "1",  time: 10650 }
+
+  ];
+
+
+  countdown.forEach(item => {
+
+    timers.push(
+
+      setTimeout(() => {
+
+        showCount(
+          item.number
+        );
+
+      }, item.time)
+
+    );
+
+  });
+
+
+  /*
+    Hide countdown just before
+    birthday song reveal.
+  */
+
+  timers.push(
+
+    setTimeout(() => {
+
+      screen.classList.remove(
+        "active"
+      );
+
+    }, 11750)
+
+  );
+
+
+  /*
+    Birthday-song hit.
+  */
+
+  timers.push(
+
+    setTimeout(() => {
+
+      celebrate();
+
+    }, 12350)
+
+  );
+
+}
+
+
+/* =========================
+   AUDIO
+========================= */
+
+function startAudio() {
+
+  const audio =
+    document.getElementById(
+      "birthdayAudio"
+    );
+
+  audio.pause();
+
+  audio.currentTime = 0;
+
+  audio.play().catch(error => {
+
+    console.log(
+      "Audio could not start:",
+      error
+    );
+
+  });
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+function startExperience() {
+
+  clearTimers();
 
   document
-    .getElementById("intro")
-    .classList.add("hide");
+    .getElementById(
+      "intro"
+    )
+    .classList.add(
+      "hide"
+    );
 
-  setTimeout(() => {
-    celebrate();
-  }, 350);
+  document
+    .getElementById(
+      "replayButton"
+    )
+    .classList.remove(
+      "show"
+    );
+
+  startAudio();
+
+  runCountdownSequence();
+
+}
+
+
+/* =========================
+   REPLAY
+========================= */
+
+function replayExperience() {
+
+  clearTimers();
+
+
+  const hero =
+    document.getElementById(
+      "heroImage"
+    );
+
+  hero.classList.remove(
+    "reveal"
+  );
+
+
+  document
+    .getElementById(
+      "replayButton"
+    )
+    .classList.remove(
+      "show"
+    );
+
+
+  document
+    .getElementById(
+      "birthdayMessage"
+    )
+    .classList.remove(
+      "show"
+    );
+
+
+  startAudio();
+
+  runCountdownSequence();
 
 }
 
