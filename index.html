@@ -7,7 +7,6 @@
 <title>Happy 17th Birthday, Emmitt!</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
@@ -25,9 +24,7 @@ body {
   color: white;
 }
 
-/* =========================
-   MAIN BIRTHDAY SCENE
-========================= */
+/* MAIN SCENE */
 
 .hero {
   position: relative;
@@ -36,32 +33,32 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
   background:
     radial-gradient(circle at top, #173761, #07111f 70%);
 }
 
 .hero-image {
-  position: relative;
-  z-index: 1;
   width: 100%;
   max-width: 1100px;
   height: auto;
   display: block;
+
   box-shadow:
     0 0 45px rgba(0,0,0,.45);
 }
 
-/* =========================
-   INTRO SCREEN
-========================= */
+/* OPENING SCREEN */
 
 .intro {
   position: fixed;
   inset: 0;
   z-index: 100;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 24px;
 
   background:
@@ -87,6 +84,7 @@ body {
   width: 90px;
   height: 52px;
   margin: 0 auto 28px;
+
   position: relative;
 
   background: #e72b31;
@@ -101,6 +99,7 @@ body {
 
 .intro-brick::before {
   content: "";
+
   position: absolute;
 
   width: 26px;
@@ -115,8 +114,7 @@ body {
   background: #f4474c;
 
   box-shadow:
-    36px 0 0 #f4474c,
-    36px 0 0 0 #f4474c;
+    36px 0 0 #f4474c;
 }
 
 .intro h1 {
@@ -177,33 +175,19 @@ body {
   box-shadow:
     0 7px 0 #111,
     0 14px 25px rgba(0,0,0,.25);
-
-  transition: .12s ease;
 }
 
-.tap-btn:hover {
-  transform: translateY(-3px);
-}
-
-.tap-btn:active {
-  transform: translateY(5px);
-  box-shadow:
-    0 2px 0 #111;
-}
-
-/* =========================
-   BUILD AGAIN BUTTON
-========================= */
+/* BUILD AGAIN BUTTON */
 
 .build-btn {
   position: fixed;
 
   left: 50%;
-  bottom: 20px;
+  bottom: 18px;
 
   transform: translateX(-50%);
 
-  z-index: 25;
+  z-index: 30;
 
   padding: 14px 24px;
 
@@ -223,8 +207,6 @@ body {
   box-shadow:
     0 7px 0 #111,
     0 12px 25px rgba(0,0,0,.38);
-
-  transition: .12s ease;
 }
 
 .build-btn:hover {
@@ -242,9 +224,7 @@ body {
     0 2px 0 #111;
 }
 
-/* =========================
-   EFFECT LAYER
-========================= */
+/* EFFECTS LAYER */
 
 #effects {
   position: fixed;
@@ -256,138 +236,15 @@ body {
   overflow: hidden;
 }
 
-/* =========================
-   BETTER BRICK SHAPES
-========================= */
-
-.brick {
-  position: absolute;
-
-  top: -120px;
-
-  width: 64px;
-  height: 36px;
-
-  border: 4px solid #111;
-  border-radius: 6px;
-
-  background: var(--brick);
-
-  box-shadow:
-    inset -8px -8px 0 rgba(0,0,0,.16),
-    inset 5px 5px 0 rgba(255,255,255,.18),
-    0 8px 8px rgba(0,0,0,.18);
-
-  animation:
-    brickFall linear forwards;
-}
-
-/* top studs */
-
-.brick::before {
-  content: "";
-
-  position: absolute;
-
-  width: 17px;
-  height: 9px;
-
-  left: 7px;
-  top: -11px;
-
-  border: 3px solid #111;
-  border-radius: 50%;
-
-  background: var(--brick);
-
-  box-shadow:
-    27px 0 0 var(--brick);
-}
-
-/* side depth */
-
-.brick::after {
-  content: "";
-
-  position: absolute;
-
-  width: 10px;
-  height: 25px;
-
-  right: -10px;
-  bottom: -3px;
-
-  background:
-    color-mix(in srgb, var(--brick) 72%, black);
-
-  border-right: 4px solid #111;
-  border-bottom: 4px solid #111;
-
-  transform: skewY(-28deg);
-
-  transform-origin: left top;
-}
-
-/* longer 2x4 brick */
-
-.brick.long {
-  width: 90px;
-}
-
-.brick.long::before {
-  box-shadow:
-    22px 0 0 var(--brick),
-    44px 0 0 var(--brick),
-    66px 0 0 var(--brick);
-}
-
-.brick.long::after {
-  height: 25px;
-}
-
-/* square brick */
-
-.brick.square {
-  width: 48px;
-  height: 48px;
-}
-
-.brick.square::before {
-  left: 5px;
-
-  box-shadow:
-    20px 0 0 var(--brick),
-    0 20px 0 var(--brick),
-    20px 20px 0 var(--brick);
-}
-
-@keyframes brickFall {
-
-  from {
-    transform:
-      translateY(-140px)
-      rotate(0deg);
-  }
-
-  to {
-    transform:
-      translateY(120vh)
-      rotate(620deg);
-  }
-
-}
-
-/* =========================
-   CONFETTI
-========================= */
+/* CONFETTI */
 
 .confetti {
   position: absolute;
 
-  top: -40px;
+  top: -30px;
 
-  width: 10px;
-  height: 22px;
+  width: 8px;
+  height: 18px;
 
   border-radius: 2px;
 
@@ -396,43 +253,10 @@ body {
 }
 
 @keyframes confettiFall {
-
   from {
     transform:
       translateY(-40px)
       rotate(0deg);
-  }
-
-  to {
-    transform:
-      translateY(115vh)
-      rotate(900deg);
-  }
-
-}
-
-/* =========================
-   STARS
-========================= */
-
-.star {
-  position: absolute;
-
-  top: -50px;
-
-  font-size: 28px;
-
-  animation:
-    starFall linear forwards;
-}
-
-@keyframes starFall {
-
-  from {
-    transform:
-      translateY(-60px)
-      rotate(0deg)
-      scale(.6);
 
     opacity: 1;
   }
@@ -440,17 +264,46 @@ body {
   to {
     transform:
       translateY(105vh)
-      rotate(500deg)
-      scale(1.3);
+      rotate(720deg);
 
-    opacity: .7;
+    opacity: .85;
   }
-
 }
 
-/* =========================
-   FLASH MESSAGE
-========================= */
+/* SPARKLES */
+
+.sparkle {
+  position: absolute;
+
+  top: -40px;
+
+  font-size: 18px;
+
+  animation:
+    sparkleFall linear forwards;
+}
+
+@keyframes sparkleFall {
+  from {
+    transform:
+      translateY(-40px)
+      rotate(0deg)
+      scale(.7);
+
+    opacity: 1;
+  }
+
+  to {
+    transform:
+      translateY(100vh)
+      rotate(420deg)
+      scale(1.1);
+
+    opacity: .2;
+  }
+}
+
+/* LEVEL MESSAGE */
 
 .build-message {
   position: fixed;
@@ -474,7 +327,7 @@ body {
 
   padding: 18px 26px;
 
-  font-size: clamp(25px, 7vw, 52px);
+  font-size: clamp(24px, 7vw, 50px);
   font-weight: 1000;
 
   text-align: center;
@@ -489,29 +342,31 @@ body {
 
 .build-message.show {
   animation:
-    popMessage 1.2s ease forwards;
+    popMessage 1.15s ease forwards;
 }
 
 @keyframes popMessage {
-
   0% {
     opacity: 0;
+
     transform:
       translate(-50%, -50%)
       scale(.5)
-      rotate(-5deg);
+      rotate(-4deg);
   }
 
   20% {
     opacity: 1;
+
     transform:
       translate(-50%, -50%)
-      scale(1.08)
-      rotate(2deg);
+      scale(1.07)
+      rotate(1deg);
   }
 
   70% {
     opacity: 1;
+
     transform:
       translate(-50%, -50%)
       scale(1);
@@ -519,37 +374,22 @@ body {
 
   100% {
     opacity: 0;
+
     transform:
       translate(-50%, -50%)
       scale(.95);
   }
-
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
-
-  .hero-image {
-    width: 100%;
-  }
-
   .build-btn {
-    bottom: 12px;
-
     font-size: 14px;
-
     padding: 11px 17px;
+    bottom: 12px;
   }
-
-  .brick {
-    transform-origin: center;
-  }
-
 }
-
 </style>
 </head>
 
@@ -590,7 +430,7 @@ body {
 <div id="effects"></div>
 
 
-<!-- BUILD MESSAGE -->
+<!-- LEVEL MESSAGE -->
 
 <div
   class="build-message"
@@ -600,7 +440,7 @@ body {
 </div>
 
 
-<!-- MAIN IMAGE -->
+<!-- MAIN ARTWORK -->
 
 <main class="hero">
 
@@ -617,17 +457,13 @@ body {
 
 <button
   class="build-btn"
-  onclick="megaBuild()"
+  onclick="celebrate()"
 >
-  🧱 BUILD AGAIN
+  ✨ BUILD AGAIN
 </button>
 
 
 <script>
-
-/* =========================
-   COLORS
-========================= */
 
 const colors = [
   "#e72b31",
@@ -639,75 +475,7 @@ const colors = [
 ];
 
 
-/* =========================
-   MAKE ONE BRICK
-========================= */
-
-function makeBrick() {
-
-  const effects =
-    document.getElementById("effects");
-
-  const brick =
-    document.createElement("div");
-
-  brick.className = "brick";
-
-  const shape =
-    Math.random();
-
-  if (shape > .66) {
-    brick.classList.add("long");
-  }
-  else if (shape < .23) {
-    brick.classList.add("square");
-  }
-
-  const color =
-    colors[
-      Math.floor(
-        Math.random() * colors.length
-      )
-    ];
-
-  brick.style.setProperty(
-    "--brick",
-    color
-  );
-
-  brick.style.left =
-    Math.random() * 95 + "vw";
-
-  brick.style.animationDuration =
-    2.4 +
-    Math.random() * 2.4 +
-    "s";
-
-  brick.style.animationDelay =
-    Math.random() * .35 +
-    "s";
-
-  const size =
-    .65 +
-    Math.random() * .75;
-
-  brick.style.scale =
-    size;
-
-  effects.appendChild(brick);
-
-  setTimeout(() => {
-
-    brick.remove();
-
-  }, 6000);
-
-}
-
-
-/* =========================
-   CONFETTI
-========================= */
+/* CONFETTI */
 
 function makeConfetti() {
 
@@ -732,8 +500,8 @@ function makeConfetti() {
     ];
 
   piece.style.animationDuration =
-    2 +
-    Math.random() * 2.5 +
+    2.2 +
+    Math.random() * 2 +
     "s";
 
   piece.style.animationDelay =
@@ -743,101 +511,76 @@ function makeConfetti() {
   effects.appendChild(piece);
 
   setTimeout(() => {
-
     piece.remove();
-
-  }, 5500);
-
+  }, 5000);
 }
 
 
-/* =========================
-   STAR
-========================= */
+/* SPARKLES */
 
-function makeStar() {
+function makeSparkle() {
 
   const effects =
     document.getElementById("effects");
 
-  const star =
+  const sparkle =
     document.createElement("div");
 
-  star.className =
-    "star";
+  sparkle.className =
+    "sparkle";
 
-  star.innerHTML =
+  sparkle.textContent =
     Math.random() > .5
-      ? "⭐"
-      : "✨";
+      ? "✨"
+      : "⭐";
 
-  star.style.left =
-    Math.random() * 95 +
+  sparkle.style.left =
+    Math.random() * 96 +
     "vw";
 
-  star.style.animationDuration =
-    2.6 +
+  sparkle.style.animationDuration =
+    2.5 +
     Math.random() * 2 +
     "s";
 
-  effects.appendChild(star);
+  sparkle.style.animationDelay =
+    Math.random() * .3 +
+    "s";
+
+  effects.appendChild(sparkle);
 
   setTimeout(() => {
-
-    star.remove();
-
-  }, 5500);
-
+    sparkle.remove();
+  }, 5200);
 }
 
 
-/* =========================
-   BUILD CELEBRATION
-========================= */
+/* CELEBRATION */
 
-function megaBuild() {
+function celebrate() {
 
   for (
     let i = 0;
-    i < 24;
+    i < 55;
     i++
   ) {
 
     setTimeout(() => {
-
-      makeBrick();
-
-    }, i * 70);
-
-  }
-
-
-  for (
-    let i = 0;
-    i < 40;
-    i++
-  ) {
-
-    setTimeout(() => {
-
       makeConfetti();
-
-    }, i * 35);
+    }, i * 25);
 
   }
 
 
   for (
     let i = 0;
-    i < 8;
+    i < 12;
     i++
   ) {
 
     setTimeout(() => {
-
-      makeStar();
-
-    }, i * 140);
+      makeSparkle();
+    }, i * 100);
 
   }
 
@@ -860,9 +603,7 @@ function megaBuild() {
 }
 
 
-/* =========================
-   START CARD
-========================= */
+/* START CARD */
 
 function startCard() {
 
@@ -871,9 +612,7 @@ function startCard() {
     .classList.add("hide");
 
   setTimeout(() => {
-
-    megaBuild();
-
+    celebrate();
   }, 350);
 
 }
