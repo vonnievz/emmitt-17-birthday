@@ -9,740 +9,372 @@
 <style>
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+  margin: 0;
+  min-height: 100%;
 }
 
 body {
-    margin: 0;
-    overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #111;
-    background:
-        linear-gradient(#66c9ff 0%, #bcecff 48%, #68c85a 48%, #39943a 100%);
-    min-height: 100vh;
+  background: #08111f;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  color: white;
 }
 
 /* =========================
-   SKY
+   MAIN BIRTHDAY SCENE
 ========================= */
 
-.sky {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background:
+    radial-gradient(circle at top, #173761, #07111f 70%);
 }
 
-.cloud {
-    position: absolute;
-    background: white;
-    border-radius: 999px;
-    opacity: .92;
-}
-
-.cloud::before,
-.cloud::after {
-    content: "";
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-}
-
-.cloud1 {
-    width: 180px;
-    height: 50px;
-    top: 9%;
-    left: 4%;
-}
-
-.cloud1::before {
-    width: 80px;
-    height: 80px;
-    left: 25px;
-    top: -35px;
-}
-
-.cloud1::after {
-    width: 100px;
-    height: 100px;
-    left: 75px;
-    top: -50px;
-}
-
-.cloud2 {
-    width: 230px;
-    height: 55px;
-    top: 14%;
-    right: 3%;
-}
-
-.cloud2::before {
-    width: 100px;
-    height: 100px;
-    left: 30px;
-    top: -45px;
-}
-
-.cloud2::after {
-    width: 120px;
-    height: 120px;
-    left: 105px;
-    top: -60px;
+.hero-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  display: block;
+  box-shadow:
+    0 0 45px rgba(0,0,0,.45);
 }
 
 /* =========================
-   PAGE
+   INTRO SCREEN
 ========================= */
 
-.page {
-    position: relative;
-    z-index: 2;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 14px 80px;
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  background:
+    radial-gradient(circle at 50% 35%, #1887ef 0%, #075abf 45%, #042857 100%);
+
+  transition:
+    opacity .7s ease,
+    visibility .7s ease;
+}
+
+.intro.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-card {
+  width: min(92vw, 560px);
+  text-align: center;
+}
+
+.intro-brick {
+  width: 90px;
+  height: 52px;
+  margin: 0 auto 28px;
+  position: relative;
+
+  background: #e72b31;
+
+  border: 5px solid #111;
+  border-radius: 7px;
+
+  box-shadow:
+    inset -8px -8px 0 rgba(0,0,0,.14),
+    0 8px 0 #111;
+}
+
+.intro-brick::before {
+  content: "";
+  position: absolute;
+
+  width: 26px;
+  height: 13px;
+
+  top: -14px;
+  left: 10px;
+
+  border: 4px solid #111;
+  border-radius: 50%;
+
+  background: #f4474c;
+
+  box-shadow:
+    36px 0 0 #f4474c,
+    36px 0 0 0 #f4474c;
+}
+
+.intro h1 {
+  margin: 0;
+
+  font-size: clamp(48px, 11vw, 95px);
+  line-height: .9;
+  letter-spacing: -3px;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    4px 4px 0 #111,
+    8px 8px 0 rgba(0,0,0,.2);
+}
+
+.intro h1 span {
+  color: #ffd51b;
+}
+
+.level {
+  display: inline-block;
+
+  margin-top: 24px;
+  padding: 11px 18px;
+
+  background: #ffd51b;
+  color: #111;
+
+  border: 4px solid #111;
+  border-radius: 12px;
+
+  font-size: clamp(16px, 4vw, 22px);
+  font-weight: 900;
+
+  box-shadow: 5px 5px 0 #111;
+}
+
+.tap-btn {
+  display: block;
+
+  margin: 35px auto 0;
+  padding: 17px 29px;
+
+  border: 5px solid #111;
+  border-radius: 16px;
+
+  background:
+    linear-gradient(#ed3d42, #c71d25);
+
+  color: white;
+
+  font-size: clamp(17px, 4vw, 22px);
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 0 #111,
+    0 14px 25px rgba(0,0,0,.25);
+
+  transition: .12s ease;
+}
+
+.tap-btn:hover {
+  transform: translateY(-3px);
+}
+
+.tap-btn:active {
+  transform: translateY(5px);
+  box-shadow:
+    0 2px 0 #111;
 }
 
 /* =========================
-   TOP NAV
+   BUILD AGAIN BUTTON
 ========================= */
 
-.topbar {
-    background: #075fc5;
-    border: 5px solid #111;
-    box-shadow: 0 8px 0 #111;
-    border-radius: 18px;
-    padding: 12px 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    font-weight: 900;
+.build-btn {
+  position: fixed;
+
+  left: 50%;
+  bottom: 20px;
+
+  transform: translateX(-50%);
+
+  z-index: 25;
+
+  padding: 14px 24px;
+
+  border: 4px solid #111;
+  border-radius: 18px;
+
+  background:
+    linear-gradient(#2085f0, #0759c8);
+
+  color: white;
+
+  font-size: 17px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 0 #111,
+    0 12px 25px rgba(0,0,0,.38);
+
+  transition: .12s ease;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.build-btn:hover {
+  transform:
+    translateX(-50%)
+    translateY(-3px);
 }
 
-.brand-brick {
-    width: 48px;
-    height: 32px;
-    background: #e6262c;
-    border: 4px solid #111;
-    border-radius: 5px;
-    position: relative;
-}
+.build-btn:active {
+  transform:
+    translateX(-50%)
+    translateY(4px);
 
-.brand-brick::before {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 7px;
-    background: #ff555a;
-    border: 2px solid #111;
-    border-radius: 50%;
-    top: -10px;
-    left: 7px;
-    box-shadow:
-        17px 0 #ff555a;
-}
-
-.brand-title {
-    font-size: clamp(17px, 3vw, 24px);
-}
-
-.nav-word {
-    font-size: 13px;
-    opacity: .9;
+  box-shadow:
+    0 2px 0 #111;
 }
 
 /* =========================
-   BANNER
+   EFFECT LAYER
 ========================= */
 
-.banner {
-    margin: 45px auto 20px;
-    background: #ffd21c;
-    border: 6px solid #111;
-    border-radius: 18px;
-    box-shadow: 0 12px 0 #111;
-    padding: 28px 18px 22px;
-    text-align: center;
-    max-width: 870px;
-    position: relative;
-}
+#effects {
+  position: fixed;
+  inset: 0;
 
-.studs {
-    position: absolute;
-    top: -15px;
-    left: 4%;
-    right: 4%;
-    display: flex;
-    justify-content: space-around;
-}
+  z-index: 50;
 
-.stud {
-    width: 42px;
-    height: 21px;
-    border-radius: 50% 50% 25% 25%;
-    border: 4px solid #111;
-    background: #ffe468;
-}
-
-.banner-small {
-    font-size: clamp(26px, 6vw, 60px);
-    line-height: 1;
-    font-weight: 1000;
-    text-transform: uppercase;
-}
-
-.banner-small .red { color:#df2327; }
-.banner-small .blue { color:#065fd1; }
-.banner-small .green { color:#087b3d; }
-
-.emmitt {
-    display: block;
-    margin-top: 4px;
-    font-size: clamp(50px, 11vw, 110px);
-    line-height: .95;
-    color: #e51e2b;
-    text-shadow:
-        4px 4px 0 #fff,
-        8px 8px 0 #111;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 /* =========================
-   MAIN PARTY
+   BETTER BRICK SHAPES
 ========================= */
 
-.party {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr 1fr;
-    gap: 15px;
-    align-items: end;
-    margin-top: 40px;
+.brick {
+  position: absolute;
+
+  top: -120px;
+
+  width: 64px;
+  height: 36px;
+
+  border: 4px solid #111;
+  border-radius: 6px;
+
+  background: var(--brick);
+
+  box-shadow:
+    inset -8px -8px 0 rgba(0,0,0,.16),
+    inset 5px 5px 0 rgba(255,255,255,.18),
+    0 8px 8px rgba(0,0,0,.18);
+
+  animation:
+    brickFall linear forwards;
 }
 
-/* =========================
-   SIGN
-========================= */
+/* top studs */
 
-.sign {
-    background: #d8a45e;
-    border: 5px solid #111;
-    border-radius: 8px;
-    padding: 18px 8px;
-    box-shadow: 7px 7px 0 #111;
-    font-size: clamp(18px, 3vw, 29px);
-    font-weight: 1000;
-    text-align: center;
-    transform: rotate(-3deg);
+.brick::before {
+  content: "";
+
+  position: absolute;
+
+  width: 17px;
+  height: 9px;
+
+  left: 7px;
+  top: -11px;
+
+  border: 3px solid #111;
+  border-radius: 50%;
+
+  background: var(--brick);
+
+  box-shadow:
+    27px 0 0 var(--brick);
 }
 
-.trophy {
-    font-size: 42px;
+/* side depth */
+
+.brick::after {
+  content: "";
+
+  position: absolute;
+
+  width: 10px;
+  height: 25px;
+
+  right: -10px;
+  bottom: -3px;
+
+  background:
+    color-mix(in srgb, var(--brick) 72%, black);
+
+  border-right: 4px solid #111;
+  border-bottom: 4px solid #111;
+
+  transform: skewY(-28deg);
+
+  transform-origin: left top;
 }
 
-/* =========================
-   EMMITT MINIFIGURE
-========================= */
+/* longer 2x4 brick */
 
-.minifig-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    min-height: 500px;
+.brick.long {
+  width: 90px;
 }
 
-.minifig {
-    width: 260px;
-    position: relative;
-    animation: heroBounce 2.5s ease-in-out infinite;
+.brick.long::before {
+  box-shadow:
+    22px 0 0 var(--brick),
+    44px 0 0 var(--brick),
+    66px 0 0 var(--brick);
 }
 
-@keyframes heroBounce {
-    0%,100% { transform: translateY(0) rotate(-1deg); }
-    50% { transform: translateY(-8px) rotate(1deg); }
+.brick.long::after {
+  height: 25px;
 }
 
-/* Hair */
+/* square brick */
 
-.hair {
-    position: relative;
-    width: 170px;
-    height: 72px;
-    margin: 0 auto -28px;
-    background: #21180f;
-    border: 6px solid #111;
-    border-radius: 65% 65% 26% 26%;
-    z-index: 5;
+.brick.square {
+  width: 48px;
+  height: 48px;
 }
 
-.hair::before,
-.hair::after {
-    content:"";
-    position:absolute;
-    background:#21180f;
-    border:4px solid #111;
-    border-radius:50%;
+.brick.square::before {
+  left: 5px;
+
+  box-shadow:
+    20px 0 0 var(--brick),
+    0 20px 0 var(--brick),
+    20px 20px 0 var(--brick);
 }
 
-.hair::before {
-    width: 65px;
-    height: 45px;
-    left: 12px;
-    top: -10px;
-}
+@keyframes brickFall {
 
-.hair::after {
-    width: 75px;
-    height: 48px;
-    right: 8px;
-    top: -13px;
-}
+  from {
+    transform:
+      translateY(-140px)
+      rotate(0deg);
+  }
 
-/* Head */
+  to {
+    transform:
+      translateY(120vh)
+      rotate(620deg);
+  }
 
-.head {
-    width: 170px;
-    height: 150px;
-    margin: 0 auto;
-    background: #f7d117;
-    border: 6px solid #111;
-    border-radius: 30px 30px 36px 36px;
-    position: relative;
-    z-index: 3;
-    box-shadow:
-        inset 12px 0 rgba(255,255,255,.22),
-        inset -14px -8px rgba(191,139,0,.22);
-}
-
-.head::before {
-    content:"";
-    position:absolute;
-    width:58px;
-    height:20px;
-    left:50%;
-    transform:translateX(-50%);
-    top:-17px;
-    background:#f7d117;
-    border:5px solid #111;
-    border-radius:50% 50% 20% 20%;
-}
-
-/* Face */
-
-.eye {
-    position: absolute;
-    width: 17px;
-    height: 24px;
-    background: #111;
-    border-radius: 50%;
-    top: 55px;
-}
-
-.eye.left { left: 43px; }
-.eye.right { right: 43px; }
-
-.brow {
-    position:absolute;
-    width:30px;
-    height:6px;
-    background:#111;
-    border-radius:20px;
-    top:42px;
-}
-
-.brow.left {
-    left:34px;
-    transform:rotate(-8deg);
-}
-
-.brow.right {
-    right:34px;
-    transform:rotate(8deg);
-}
-
-.smile {
-    position: absolute;
-    width: 80px;
-    height: 40px;
-    background: #111;
-    border-radius: 0 0 60px 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 91px;
-}
-
-.smile::before {
-    content:"";
-    position:absolute;
-    background:#fff;
-    width:58px;
-    height:12px;
-    top:3px;
-    left:11px;
-    border-radius:0 0 10px 10px;
-}
-
-/* Neck */
-
-.neck {
-    width: 70px;
-    height: 30px;
-    background: #f7d117;
-    border-left: 5px solid #111;
-    border-right: 5px solid #111;
-    margin: -3px auto -3px;
-}
-
-/* Arms */
-
-.arm {
-    position: absolute;
-    width: 62px;
-    height: 180px;
-    background: #242424;
-    border: 6px solid #111;
-    top: 190px;
-    z-index: 1;
-}
-
-.arm.left {
-    left: -30px;
-    transform: rotate(20deg);
-    border-radius: 35px 15px 30px 20px;
-}
-
-.arm.right {
-    right: -30px;
-    transform: rotate(-15deg);
-    border-radius: 15px 35px 20px 30px;
-}
-
-.hand {
-    width: 58px;
-    height: 58px;
-    background: #f7d117;
-    border: 6px solid #111;
-    border-radius: 50%;
-    position:absolute;
-    bottom:-37px;
-    left:-4px;
-}
-
-.hand::after {
-    content:"";
-    position:absolute;
-    width:25px;
-    height:33px;
-    background:#68c85a;
-    border:5px solid #111;
-    border-radius:50%;
-    top:7px;
-    left:12px;
-}
-
-/* Waving arm */
-
-.arm.left {
-    height: 155px;
-    top: 175px;
-    transform-origin: bottom center;
-    transform: rotate(150deg);
-}
-
-/* Torso */
-
-.torso {
-    height: 190px;
-    width: 220px;
-    background: #252525;
-    margin: 0 auto;
-    border: 6px solid #111;
-    clip-path: polygon(12% 0,88% 0,100% 100%,0 100%);
-    position: relative;
-    z-index: 2;
-}
-
-.flynn {
-    position:absolute;
-    width:100%;
-    text-align:center;
-    top:64px;
-    font-weight:1000;
-    color:#f33;
-    letter-spacing:2px;
-    font-size:25px;
-    text-shadow:
-        1px 1px #ffc400,
-        2px 2px #702;
-}
-
-.arcade {
-    position:absolute;
-    width:100%;
-    text-align:center;
-    top:100px;
-    font-weight:bold;
-    color:#ddd;
-}
-
-/* Hips */
-
-.hips {
-    width:190px;
-    height:46px;
-    background:#183e78;
-    border:6px solid #111;
-    margin: -2px auto 0;
-}
-
-/* Legs */
-
-.legs {
-    display:flex;
-    justify-content:center;
-    gap:10px;
-}
-
-.leg {
-    width:90px;
-    height:145px;
-    background:#1e477e;
-    border:6px solid #111;
-    border-radius:0 0 9px 9px;
-}
-
-.foot {
-    height: 38px;
-    width: 105px;
-    background:#163863;
-    border:6px solid #111;
-    margin-left:-7px;
-    margin-top:101px;
-}
-
-/* =========================
-   CAKE
-========================= */
-
-.cake-area {
-    text-align:center;
-}
-
-.cake {
-    position:relative;
-    margin:0 auto;
-    width:235px;
-}
-
-.number17 {
-    height: 150px;
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    align-items:flex-end;
-    margin-bottom:-3px;
-}
-
-.one {
-    width:55px;
-    height:120px;
-    background:#0768da;
-    border:6px solid #111;
-    position:relative;
-}
-
-.one::before {
-    content:"";
-    position:absolute;
-    width:35px;
-    height:35px;
-    background:#0768da;
-    border:6px solid #111;
-    left:-26px;
-    top:0;
-}
-
-.seven {
-    width:105px;
-    height:120px;
-    position:relative;
-    border-top:35px solid #e7272d;
-    border-right:35px solid #e7272d;
-    transform:skew(-6deg);
-    filter:drop-shadow(5px 0 #111);
-}
-
-.flame {
-    position:absolute;
-    top:-45px;
-    width:20px;
-    height:38px;
-    background:#ff9b00;
-    border:4px solid #111;
-    border-radius:50% 50% 50% 8%;
-    transform:rotate(45deg);
-}
-
-.flame1 { left:53px; }
-.flame2 { right:42px; }
-
-.cake-tier {
-    border:6px solid #111;
-    margin:-3px auto 0;
-    border-radius:18px;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #e9252d 0 36px,
-            #ffda15 36px 72px,
-            #0868cf 72px 108px,
-            #159447 108px 144px
-        );
-}
-
-.tier1 {
-    width:175px;
-    height:70px;
-}
-
-.tier2 {
-    width:215px;
-    height:82px;
-}
-
-.tier3 {
-    width:250px;
-    height:92px;
-}
-
-.icing {
-    height:22px;
-    background:white;
-    border-bottom:5px solid #111;
-}
-
-/* =========================
-   MESSAGE CARD
-========================= */
-
-.message-card {
-    margin: 45px auto 0;
-    max-width: 750px;
-    background: white;
-    border: 6px solid #111;
-    border-radius: 20px;
-    padding: 28px 20px;
-    text-align:center;
-    box-shadow: 9px 9px 0 #111;
-}
-
-.message-card h2 {
-    font-size: clamp(26px, 5vw, 46px);
-    margin: 0 0 15px;
-}
-
-.message-card p {
-    max-width: 620px;
-    margin: auto;
-    font-size: clamp(17px, 3vw, 21px);
-    line-height: 1.55;
-}
-
-.love {
-    margin-top:20px;
-    font-size:26px;
-    font-weight:1000;
-}
-
-.heart {
-    color:#e5252b;
-}
-
-/* =========================
-   BUTTON
-========================= */
-
-.build-button {
-    border:5px solid #111;
-    background:#0868d6;
-    color:white;
-    padding:17px 28px;
-    margin-top:28px;
-    font-size:20px;
-    font-weight:1000;
-    border-radius:18px;
-    box-shadow:0 7px 0 #111;
-    cursor:pointer;
-}
-
-.build-button:hover {
-    transform:translateY(-3px);
-}
-
-.build-button:active {
-    transform:translateY(5px);
-    box-shadow:0 2px 0 #111;
-}
-
-/* =========================
-   FALLING BRICKS
-========================= */
-
-.brick-rain {
-    position:fixed;
-    inset:0;
-    z-index:10;
-    pointer-events:none;
-    overflow:hidden;
-}
-
-.falling-brick {
-    position:absolute;
-    top:-100px;
-    width:50px;
-    height:29px;
-    border:4px solid #111;
-    border-radius:5px;
-    animation: fall linear forwards;
-    box-shadow:0 5px 0 rgba(0,0,0,.18);
-}
-
-.falling-brick::before,
-.falling-brick::after {
-    content:"";
-    position:absolute;
-    width:13px;
-    height:7px;
-    border:3px solid #111;
-    border-radius:50%;
-    top:-10px;
-    background:inherit;
-}
-
-.falling-brick::before {
-    left:5px;
-}
-
-.falling-brick::after {
-    right:5px;
-}
-
-@keyframes fall {
-    from {
-        transform: translateY(-80px) rotate(0deg);
-    }
-    to {
-        transform: translateY(120vh) rotate(720deg);
-    }
 }
 
 /* =========================
@@ -750,80 +382,171 @@ body {
 ========================= */
 
 .confetti {
-    position:fixed;
-    top:-30px;
-    width:12px;
-    height:22px;
-    z-index:9;
-    pointer-events:none;
-    animation: confettiFall linear forwards;
+  position: absolute;
+
+  top: -40px;
+
+  width: 10px;
+  height: 22px;
+
+  border-radius: 2px;
+
+  animation:
+    confettiFall linear forwards;
 }
 
 @keyframes confettiFall {
-    to {
-        transform:translateY(115vh) rotate(900deg);
-    }
+
+  from {
+    transform:
+      translateY(-40px)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translateY(115vh)
+      rotate(900deg);
+  }
+
 }
 
 /* =========================
-   BOTTOM STUDDED GROUND
+   STARS
 ========================= */
 
-.ground {
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    height:55px;
-    z-index:1;
-    background:
-        radial-gradient(circle,#1d7e32 0 8px,#42ae50 9px 15px);
-    background-size:32px 32px;
+.star {
+  position: absolute;
+
+  top: -50px;
+
+  font-size: 28px;
+
+  animation:
+    starFall linear forwards;
+}
+
+@keyframes starFall {
+
+  from {
+    transform:
+      translateY(-60px)
+      rotate(0deg)
+      scale(.6);
+
+    opacity: 1;
+  }
+
+  to {
+    transform:
+      translateY(105vh)
+      rotate(500deg)
+      scale(1.3);
+
+    opacity: .7;
+  }
+
+}
+
+/* =========================
+   FLASH MESSAGE
+========================= */
+
+.build-message {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(.8);
+
+  z-index: 70;
+
+  background:
+    linear-gradient(#ffd92a, #efb900);
+
+  color: #111;
+
+  border: 5px solid #111;
+  border-radius: 16px;
+
+  padding: 18px 26px;
+
+  font-size: clamp(25px, 7vw, 52px);
+  font-weight: 1000;
+
+  text-align: center;
+
+  box-shadow:
+    8px 8px 0 #111;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.build-message.show {
+  animation:
+    popMessage 1.2s ease forwards;
+}
+
+@keyframes popMessage {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(.5)
+      rotate(-5deg);
+  }
+
+  20% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(1.08)
+      rotate(2deg);
+  }
+
+  70% {
+    opacity: 1;
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      scale(.95);
+  }
+
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:760px) {
+@media (max-width: 600px) {
 
-    .party {
-        grid-template-columns:1fr;
-        align-items:center;
-    }
+  .hero-image {
+    width: 100%;
+  }
 
-    .sign {
-        max-width:290px;
-        margin:15px auto;
-        order:2;
-    }
+  .build-btn {
+    bottom: 12px;
 
-    .minifig-wrap {
-        order:1;
-        transform:scale(.88);
-        margin:-25px 0 -40px;
-    }
+    font-size: 14px;
 
-    .cake-area {
-        order:3;
-    }
+    padding: 11px 17px;
+  }
 
-    .nav-word {
-        display:none;
-    }
-
-    .banner {
-        margin-top:35px;
-    }
-
-}
-
-@media(max-width:390px) {
-
-    .minifig-wrap {
-        transform:scale(.76);
-        margin:-60px 0 -80px;
-    }
+  .brick {
+    transform-origin: center;
+  }
 
 }
 
@@ -832,343 +555,328 @@ body {
 
 <body>
 
-<div class="sky">
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-</div>
+<!-- OPENING SCREEN -->
 
-<div class="ground"></div>
+<div class="intro" id="intro">
 
-<div class="brick-rain" id="brickRain"></div>
+  <div class="intro-card">
 
-<div class="page">
+    <div class="intro-brick"></div>
 
-    <div class="topbar">
+    <h1>
+      EMMITT'S
+      <br>
+      <span>17TH</span>
+    </h1>
 
-        <div class="brand">
-
-            <div class="brand-brick"></div>
-
-            <div class="brand-title">
-                EMMITT'S 17TH
-            </div>
-
-        </div>
-
-        <div class="nav-word">
-            🎮 PLAY &nbsp; • &nbsp; 🧱 BUILD &nbsp; • &nbsp; ⭐ LEVEL UP
-        </div>
-
+    <div class="level">
+      🏆 MASTER BUILDER LEVEL 17
     </div>
 
-
-    <section class="banner">
-
-        <div class="studs">
-            <div class="stud"></div>
-            <div class="stud"></div>
-            <div class="stud"></div>
-            <div class="stud"></div>
-            <div class="stud"></div>
-            <div class="stud"></div>
-        </div>
-
-        <div class="banner-small">
-
-            <span class="red">HAPPY</span>
-
-            <span class="blue">17TH</span>
-
-            <span class="green">BIRTHDAY</span>
-
-            <span class="emmitt">
-                EMMITT!
-            </span>
-
-        </div>
-
-    </section>
-
-
-    <section class="party">
-
-
-        <div class="sign">
-
-            MASTER BUILDER
-
-            <br>
-
-            LEVEL 17
-
-            <div class="trophy">🏆</div>
-
-        </div>
-
-
-
-        <div class="minifig-wrap">
-
-            <div class="minifig">
-
-                <div class="hair"></div>
-
-                <div class="head">
-
-                    <div class="brow left"></div>
-                    <div class="brow right"></div>
-
-                    <div class="eye left"></div>
-                    <div class="eye right"></div>
-
-                    <div class="smile"></div>
-
-                </div>
-
-                <div class="neck"></div>
-
-                <div class="arm left">
-                    <div class="hand"></div>
-                </div>
-
-                <div class="arm right">
-                    <div class="hand"></div>
-                </div>
-
-                <div class="torso">
-
-                    <div class="flynn">
-                        FLYNN'S
-                    </div>
-
-                    <div class="arcade">
-                        ARCADE
-                    </div>
-
-                </div>
-
-                <div class="hips"></div>
-
-                <div class="legs">
-
-                    <div class="leg">
-                        <div class="foot"></div>
-                    </div>
-
-                    <div class="leg">
-                        <div class="foot"></div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="cake-area">
-
-            <div class="cake">
-
-                <div class="number17">
-
-                    <div class="one"></div>
-
-                    <div class="seven"></div>
-
-                    <div class="flame flame1"></div>
-                    <div class="flame flame2"></div>
-
-                </div>
-
-                <div class="cake-tier tier1">
-                    <div class="icing"></div>
-                </div>
-
-                <div class="cake-tier tier2">
-                    <div class="icing"></div>
-                </div>
-
-                <div class="cake-tier tier3">
-                    <div class="icing"></div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <section class="message-card">
-
-        <h2>
-            SAME KID. BIGGER BUILDS.
-        </h2>
-
-        <p>
-
-            We hope 17 brings you
-            <strong>big ideas, great adventures,</strong>
-            plenty of fun, and enough bricks to build
-            anything you can imagine.
-
-            <br><br>
-
-            Keep creating.
-            Keep building.
-            Keep being you.
-
-        </p>
-
-        <div class="love">
-
-            Happy Birthday, Emmitt!
-
-            <br>
-
-            <span class="heart">♥</span>
-
-            Love, Uncle Sammy, Aunt Vonnie, and Gabe
-
-            <span class="heart">♥</span>
-
-        </div>
-
-        <button class="build-button" onclick="megaBuild()">
-
-            🧱 BUILD AGAIN
-
-        </button>
-
-    </section>
+    <button
+      class="tap-btn"
+      onclick="startCard()"
+    >
+      🧱 TAP TO BUILD
+    </button>
+
+  </div>
 
 </div>
+
+
+<!-- EFFECTS -->
+
+<div id="effects"></div>
+
+
+<!-- BUILD MESSAGE -->
+
+<div
+  class="build-message"
+  id="buildMessage"
+>
+  LEVEL 17 UNLOCKED!
+</div>
+
+
+<!-- MAIN IMAGE -->
+
+<main class="hero">
+
+  <img
+    src="emmitt-birthday-hero.png"
+    alt="Happy 17th Birthday Emmitt"
+    class="hero-image"
+  >
+
+</main>
+
+
+<!-- BUILD AGAIN -->
+
+<button
+  class="build-btn"
+  onclick="megaBuild()"
+>
+  🧱 BUILD AGAIN
+</button>
 
 
 <script>
 
+/* =========================
+   COLORS
+========================= */
+
 const colors = [
-    "#e5252a",
-    "#ffd21c",
-    "#0868d6",
-    "#139447",
-    "#f58220",
-    "#ffffff"
+  "#e72b31",
+  "#ffd51b",
+  "#086dd7",
+  "#159549",
+  "#f28a20",
+  "#ffffff"
 ];
 
-function makeBrick(extra = false) {
 
-    const brick = document.createElement("div");
+/* =========================
+   MAKE ONE BRICK
+========================= */
 
-    brick.className = "falling-brick";
+function makeBrick() {
 
-    brick.style.left =
-        Math.random() * 95 + "vw";
+  const effects =
+    document.getElementById("effects");
 
-    brick.style.background =
-        colors[Math.floor(Math.random() * colors.length)];
+  const brick =
+    document.createElement("div");
 
-    const scale =
-        extra
-        ? .8 + Math.random() * 1.2
-        : .55 + Math.random() * .8;
+  brick.className = "brick";
 
-    brick.style.transform =
-        `scale(${scale})`;
+  const shape =
+    Math.random();
 
-    brick.style.animationDuration =
-        (extra
-        ? 2.3 + Math.random() * 2
-        : 5 + Math.random() * 5)
-        + "s";
+  if (shape > .66) {
+    brick.classList.add("long");
+  }
+  else if (shape < .23) {
+    brick.classList.add("square");
+  }
 
-    brick.style.animationDelay =
-        Math.random() * .5 + "s";
+  const color =
+    colors[
+      Math.floor(
+        Math.random() * colors.length
+      )
+    ];
 
-    document
-        .getElementById("brickRain")
-        .appendChild(brick);
+  brick.style.setProperty(
+    "--brick",
+    color
+  );
 
-    setTimeout(() => {
-        brick.remove();
-    }, 11000);
+  brick.style.left =
+    Math.random() * 95 + "vw";
+
+  brick.style.animationDuration =
+    2.4 +
+    Math.random() * 2.4 +
+    "s";
+
+  brick.style.animationDelay =
+    Math.random() * .35 +
+    "s";
+
+  const size =
+    .65 +
+    Math.random() * .75;
+
+  brick.style.scale =
+    size;
+
+  effects.appendChild(brick);
+
+  setTimeout(() => {
+
+    brick.remove();
+
+  }, 6000);
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function makeConfetti() {
+
+  const effects =
+    document.getElementById("effects");
+
+  const piece =
+    document.createElement("div");
+
+  piece.className =
+    "confetti";
+
+  piece.style.left =
+    Math.random() * 100 +
+    "vw";
+
+  piece.style.background =
+    colors[
+      Math.floor(
+        Math.random() * colors.length
+      )
+    ];
+
+  piece.style.animationDuration =
+    2 +
+    Math.random() * 2.5 +
+    "s";
+
+  piece.style.animationDelay =
+    Math.random() * .25 +
+    "s";
+
+  effects.appendChild(piece);
+
+  setTimeout(() => {
+
+    piece.remove();
+
+  }, 5500);
 
 }
 
 
-function confettiBlast() {
+/* =========================
+   STAR
+========================= */
 
-    for (let i = 0; i < 50; i++) {
+function makeStar() {
 
-        const piece =
-            document.createElement("div");
+  const effects =
+    document.getElementById("effects");
 
-        piece.className =
-            "confetti";
+  const star =
+    document.createElement("div");
 
-        piece.style.left =
-            Math.random() * 100 + "vw";
+  star.className =
+    "star";
 
-        piece.style.background =
-            colors[Math.floor(Math.random() * colors.length)];
+  star.innerHTML =
+    Math.random() > .5
+      ? "⭐"
+      : "✨";
 
-        piece.style.animationDuration =
-            2 + Math.random() * 3 + "s";
+  star.style.left =
+    Math.random() * 95 +
+    "vw";
 
-        piece.style.animationDelay =
-            Math.random() * .5 + "s";
+  star.style.animationDuration =
+    2.6 +
+    Math.random() * 2 +
+    "s";
 
-        document.body.appendChild(piece);
+  effects.appendChild(star);
 
-        setTimeout(() => {
-            piece.remove();
-        }, 6000);
+  setTimeout(() => {
 
-    }
+    star.remove();
+
+  }, 5500);
 
 }
 
+
+/* =========================
+   BUILD CELEBRATION
+========================= */
 
 function megaBuild() {
 
-    for (let i = 0; i < 45; i++) {
+  for (
+    let i = 0;
+    i < 24;
+    i++
+  ) {
 
-        setTimeout(() => {
+    setTimeout(() => {
 
-            makeBrick(true);
+      makeBrick();
 
-        }, i * 55);
+    }, i * 70);
 
-    }
+  }
 
-    confettiBlast();
+
+  for (
+    let i = 0;
+    i < 40;
+    i++
+  ) {
+
+    setTimeout(() => {
+
+      makeConfetti();
+
+    }, i * 35);
+
+  }
+
+
+  for (
+    let i = 0;
+    i < 8;
+    i++
+  ) {
+
+    setTimeout(() => {
+
+      makeStar();
+
+    }, i * 140);
+
+  }
+
+
+  const message =
+    document.getElementById(
+      "buildMessage"
+    );
+
+  message.classList.remove(
+    "show"
+  );
+
+  void message.offsetWidth;
+
+  message.classList.add(
+    "show"
+  );
 
 }
 
 
-/* Gentle constant brick rain */
+/* =========================
+   START CARD
+========================= */
 
-setInterval(() => {
+function startCard() {
 
-    makeBrick(false);
+  document
+    .getElementById("intro")
+    .classList.add("hide");
 
-}, 700);
+  setTimeout(() => {
 
+    megaBuild();
 
-/* Opening celebration */
+  }, 350);
 
-window.addEventListener("load", () => {
-
-    setTimeout(() => {
-
-        megaBuild();
-
-    }, 700);
-
-});
+}
 
 </script>
 
