@@ -1,1 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Happy 17th Birthday, Emmitt!</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    background:
+        linear-gradient(#66c9ff 0%, #bcecff 48%, #68c85a 48%, #39943a 100%);
+    min-height: 100vh;
+}
+
+/* =========================
+   SKY
+========================= */
+
+.sky {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 999px;
+    opacity: .92;
+}
+
+.cloud::before,
+.cloud::after {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+}
+
+.cloud1 {
+    width: 180px;
+    height: 50px;
+    top: 9%;
+    left: 4%;
+}
+
+.cloud1::before {
+    width: 80px;
+    height: 80px;
+    left: 25px;
+    top: -35px;
+}
+
+.cloud1::after {
+    width: 100px;
+    height: 100px;
+    left: 75px;
+    top: -50px;
+}
+
+.cloud2 {
+    width: 230px;
+    height: 55px;
+    top: 14%;
+    right: 3%;
+}
+
+.cloud2::before {
+    width: 100px;
+    height: 100px;
+    left: 30px;
+    top: -45px;
+}
+
+.cloud2::after {
+    width: 120px;
+    height: 120px;
+    left: 105px;
+    top: -60px;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 14px 80px;
+}
+
+/* =========================
+   TOP NAV
+========================= */
+
+.topbar {
+    background: #075fc5;
+    border: 5px solid #111;
+    box-shadow: 0 8px 0 #111;
+    border-radius: 18px;
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-weight: 900;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-brick {
+    width: 48px;
+    height: 32px;
+    background: #e6262c;
+    border: 4px solid #111;
+    border-radius: 5px;
+    position: relative;
+}
+
+.brand-brick::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 7px;
+    background: #ff555a;
+    border: 2px solid #111;
+    border-radius: 50%;
+    top: -10px;
+    left: 7px;
+    box-shadow:
+        17px 0 #ff555a;
+}
+
+.brand-title {
+    font-size: clamp(17px, 3vw, 24px);
+}
+
+.nav-word {
+    font-size: 13px;
+    opacity: .9;
+}
+
+/* =========================
+   BANNER
+========================= */
+
+.banner {
+    margin: 45px auto 20px;
+    background: #ffd21c;
+    border: 6px solid #111;
+    border-radius: 18px;
+    box-shadow: 0 12px 0 #111;
+    padding: 28px 18px 22px;
+    text-align: center;
+    max-width: 870px;
+    position: relative;
+}
+
+.studs {
+    position: absolute;
+    top: -15px;
+    left: 4%;
+    right: 4%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.stud {
+    width: 42px;
+    height: 21px;
+    border-radius: 50% 50% 25% 25%;
+    border: 4px solid #111;
+    background: #ffe468;
+}
+
+.banner-small {
+    font-size: clamp(26px, 6vw, 60px);
+    line-height: 1;
+    font-weight: 1000;
+    text-transform: uppercase;
+}
+
+.banner-small .red { color:#df2327; }
+.banner-small .blue { color:#065fd1; }
+.banner-small .green { color:#087b3d; }
+
+.emmitt {
+    display: block;
+    margin-top: 4px;
+    font-size: clamp(50px, 11vw, 110px);
+    line-height: .95;
+    color: #e51e2b;
+    text-shadow:
+        4px 4px 0 #fff,
+        8px 8px 0 #111;
+}
+
+/* =========================
+   MAIN PARTY
+========================= */
+
+.party {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 15px;
+    align-items: end;
+    margin-top: 40px;
+}
+
+/* =========================
+   SIGN
+========================= */
+
+.sign {
+    background: #d8a45e;
+    border: 5px solid #111;
+    border-radius: 8px;
+    padding: 18px 8px;
+    box-shadow: 7px 7px 0 #111;
+    font-size: clamp(18px, 3vw, 29px);
+    font-weight: 1000;
+    text-align: center;
+    transform: rotate(-3deg);
+}
+
+.trophy {
+    font-size: 42px;
+}
+
+/* =========================
+   EMMITT MINIFIGURE
+========================= */
+
+.minifig-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 500px;
+}
+
+.minifig {
+    width: 260px;
+    position: relative;
+    animation: heroBounce 2.5s ease-in-out infinite;
+}
+
+@keyframes heroBounce {
+    0%,100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* Hair */
+
+.hair {
+    position: relative;
+    width: 170px;
+    height: 72px;
+    margin: 0 auto -28px;
+    background: #21180f;
+    border: 6px solid #111;
+    border-radius: 65% 65% 26% 26%;
+    z-index: 5;
+}
+
+.hair::before,
+.hair::after {
+    content:"";
+    position:absolute;
+    background:#21180f;
+    border:4px solid #111;
+    border-radius:50%;
+}
+
+.hair::before {
+    width: 65px;
+    height: 45px;
+    left: 12px;
+    top: -10px;
+}
+
+.hair::after {
+    width: 75px;
+    height: 48px;
+    right: 8px;
+    top: -13px;
+}
+
+/* Head */
+
+.head {
+    width: 170px;
+    height: 150px;
+    margin: 0 auto;
+    background: #f7d117;
+    border: 6px solid #111;
+    border-radius: 30px 30px 36px 36px;
+    position: relative;
+    z-index: 3;
+    box-shadow:
+        inset 12px 0 rgba(255,255,255,.22),
+        inset -14px -8px rgba(191,139,0,.22);
+}
+
+.head::before {
+    content:"";
+    position:absolute;
+    width:58px;
+    height:20px;
+    left:50%;
+    transform:translateX(-50%);
+    top:-17px;
+    background:#f7d117;
+    border:5px solid #111;
+    border-radius:50% 50% 20% 20%;
+}
+
+/* Face */
+
+.eye {
+    position: absolute;
+    width: 17px;
+    height: 24px;
+    background: #111;
+    border-radius: 50%;
+    top: 55px;
+}
+
+.eye.left { left: 43px; }
+.eye.right { right: 43px; }
+
+.brow {
+    position:absolute;
+    width:30px;
+    height:6px;
+    background:#111;
+    border-radius:20px;
+    top:42px;
+}
+
+.brow.left {
+    left:34px;
+    transform:rotate(-8deg);
+}
+
+.brow.right {
+    right:34px;
+    transform:rotate(8deg);
+}
+
+.smile {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background: #111;
+    border-radius: 0 0 60px 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 91px;
+}
+
+.smile::before {
+    content:"";
+    position:absolute;
+    background:#fff;
+    width:58px;
+    height:12px;
+    top:3px;
+    left:11px;
+    border-radius:0 0 10px 10px;
+}
+
+/* Neck */
+
+.neck {
+    width: 70px;
+    height: 30px;
+    background: #f7d117;
+    border-left: 5px solid #111;
+    border-right: 5px solid #111;
+    margin: -3px auto -3px;
+}
+
+/* Arms */
+
+.arm {
+    position: absolute;
+    width: 62px;
+    height: 180px;
+    background: #242424;
+    border: 6px solid #111;
+    top: 190px;
+    z-index: 1;
+}
+
+.arm.left {
+    left: -30px;
+    transform: rotate(20deg);
+    border-radius: 35px 15px 30px 20px;
+}
+
+.arm.right {
+    right: -30px;
+    transform: rotate(-15deg);
+    border-radius: 15px 35px 20px 30px;
+}
+
+.hand {
+    width: 58px;
+    height: 58px;
+    background: #f7d117;
+    border: 6px solid #111;
+    border-radius: 50%;
+    position:absolute;
+    bottom:-37px;
+    left:-4px;
+}
+
+.hand::after {
+    content:"";
+    position:absolute;
+    width:25px;
+    height:33px;
+    background:#68c85a;
+    border:5px solid #111;
+    border-radius:50%;
+    top:7px;
+    left:12px;
+}
+
+/* Waving arm */
+
+.arm.left {
+    height: 155px;
+    top: 175px;
+    transform-origin: bottom center;
+    transform: rotate(150deg);
+}
+
+/* Torso */
+
+.torso {
+    height: 190px;
+    width: 220px;
+    background: #252525;
+    margin: 0 auto;
+    border: 6px solid #111;
+    clip-path: polygon(12% 0,88% 0,100% 100%,0 100%);
+    position: relative;
+    z-index: 2;
+}
+
+.flynn {
+    position:absolute;
+    width:100%;
+    text-align:center;
+    top:64px;
+    font-weight:1000;
+    color:#f33;
+    letter-spacing:2px;
+    font-size:25px;
+    text-shadow:
+        1px 1px #ffc400,
+        2px 2px #702;
+}
+
+.arcade {
+    position:absolute;
+    width:100%;
+    text-align:center;
+    top:100px;
+    font-weight:bold;
+    color:#ddd;
+}
+
+/* Hips */
+
+.hips {
+    width:190px;
+    height:46px;
+    background:#183e78;
+    border:6px solid #111;
+    margin: -2px auto 0;
+}
+
+/* Legs */
+
+.legs {
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.leg {
+    width:90px;
+    height:145px;
+    background:#1e477e;
+    border:6px solid #111;
+    border-radius:0 0 9px 9px;
+}
+
+.foot {
+    height: 38px;
+    width: 105px;
+    background:#163863;
+    border:6px solid #111;
+    margin-left:-7px;
+    margin-top:101px;
+}
+
+/* =========================
+   CAKE
+========================= */
+
+.cake-area {
+    text-align:center;
+}
+
+.cake {
+    position:relative;
+    margin:0 auto;
+    width:235px;
+}
+
+.number17 {
+    height: 150px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    align-items:flex-end;
+    margin-bottom:-3px;
+}
+
+.one {
+    width:55px;
+    height:120px;
+    background:#0768da;
+    border:6px solid #111;
+    position:relative;
+}
+
+.one::before {
+    content:"";
+    position:absolute;
+    width:35px;
+    height:35px;
+    background:#0768da;
+    border:6px solid #111;
+    left:-26px;
+    top:0;
+}
+
+.seven {
+    width:105px;
+    height:120px;
+    position:relative;
+    border-top:35px solid #e7272d;
+    border-right:35px solid #e7272d;
+    transform:skew(-6deg);
+    filter:drop-shadow(5px 0 #111);
+}
+
+.flame {
+    position:absolute;
+    top:-45px;
+    width:20px;
+    height:38px;
+    background:#ff9b00;
+    border:4px solid #111;
+    border-radius:50% 50% 50% 8%;
+    transform:rotate(45deg);
+}
+
+.flame1 { left:53px; }
+.flame2 { right:42px; }
+
+.cake-tier {
+    border:6px solid #111;
+    margin:-3px auto 0;
+    border-radius:18px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #e9252d 0 36px,
+            #ffda15 36px 72px,
+            #0868cf 72px 108px,
+            #159447 108px 144px
+        );
+}
+
+.tier1 {
+    width:175px;
+    height:70px;
+}
+
+.tier2 {
+    width:215px;
+    height:82px;
+}
+
+.tier3 {
+    width:250px;
+    height:92px;
+}
+
+.icing {
+    height:22px;
+    background:white;
+    border-bottom:5px solid #111;
+}
+
+/* =========================
+   MESSAGE CARD
+========================= */
+
+.message-card {
+    margin: 45px auto 0;
+    max-width: 750px;
+    background: white;
+    border: 6px solid #111;
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align:center;
+    box-shadow: 9px 9px 0 #111;
+}
+
+.message-card h2 {
+    font-size: clamp(26px, 5vw, 46px);
+    margin: 0 0 15px;
+}
+
+.message-card p {
+    max-width: 620px;
+    margin: auto;
+    font-size: clamp(17px, 3vw, 21px);
+    line-height: 1.55;
+}
+
+.love {
+    margin-top:20px;
+    font-size:26px;
+    font-weight:1000;
+}
+
+.heart {
+    color:#e5252b;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.build-button {
+    border:5px solid #111;
+    background:#0868d6;
+    color:white;
+    padding:17px 28px;
+    margin-top:28px;
+    font-size:20px;
+    font-weight:1000;
+    border-radius:18px;
+    box-shadow:0 7px 0 #111;
+    cursor:pointer;
+}
+
+.build-button:hover {
+    transform:translateY(-3px);
+}
+
+.build-button:active {
+    transform:translateY(5px);
+    box-shadow:0 2px 0 #111;
+}
+
+/* =========================
+   FALLING BRICKS
+========================= */
+
+.brick-rain {
+    position:fixed;
+    inset:0;
+    z-index:10;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.falling-brick {
+    position:absolute;
+    top:-100px;
+    width:50px;
+    height:29px;
+    border:4px solid #111;
+    border-radius:5px;
+    animation: fall linear forwards;
+    box-shadow:0 5px 0 rgba(0,0,0,.18);
+}
+
+.falling-brick::before,
+.falling-brick::after {
+    content:"";
+    position:absolute;
+    width:13px;
+    height:7px;
+    border:3px solid #111;
+    border-radius:50%;
+    top:-10px;
+    background:inherit;
+}
+
+.falling-brick::before {
+    left:5px;
+}
+
+.falling-brick::after {
+    right:5px;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-80px) rotate(0deg);
+    }
+    to {
+        transform: translateY(120vh) rotate(720deg);
+    }
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti {
+    position:fixed;
+    top:-30px;
+    width:12px;
+    height:22px;
+    z-index:9;
+    pointer-events:none;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform:translateY(115vh) rotate(900deg);
+    }
+}
+
+/* =========================
+   BOTTOM STUDDED GROUND
+========================= */
+
+.ground {
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:55px;
+    z-index:1;
+    background:
+        radial-gradient(circle,#1d7e32 0 8px,#42ae50 9px 15px);
+    background-size:32px 32px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:760px) {
+
+    .party {
+        grid-template-columns:1fr;
+        align-items:center;
+    }
+
+    .sign {
+        max-width:290px;
+        margin:15px auto;
+        order:2;
+    }
+
+    .minifig-wrap {
+        order:1;
+        transform:scale(.88);
+        margin:-25px 0 -40px;
+    }
+
+    .cake-area {
+        order:3;
+    }
+
+    .nav-word {
+        display:none;
+    }
+
+    .banner {
+        margin-top:35px;
+    }
+
+}
+
+@media(max-width:390px) {
+
+    .minifig-wrap {
+        transform:scale(.76);
+        margin:-60px 0 -80px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sky">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+</div>
+
+<div class="ground"></div>
+
+<div class="brick-rain" id="brickRain"></div>
+
+<div class="page">
+
+    <div class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-brick"></div>
+
+            <div class="brand-title">
+                EMMITT'S 17TH
+            </div>
+
+        </div>
+
+        <div class="nav-word">
+            🎮 PLAY &nbsp; • &nbsp; 🧱 BUILD &nbsp; • &nbsp; ⭐ LEVEL UP
+        </div>
+
+    </div>
+
+
+    <section class="banner">
+
+        <div class="studs">
+            <div class="stud"></div>
+            <div class="stud"></div>
+            <div class="stud"></div>
+            <div class="stud"></div>
+            <div class="stud"></div>
+            <div class="stud"></div>
+        </div>
+
+        <div class="banner-small">
+
+            <span class="red">HAPPY</span>
+
+            <span class="blue">17TH</span>
+
+            <span class="green">BIRTHDAY</span>
+
+            <span class="emmitt">
+                EMMITT!
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <section class="party">
+
+
+        <div class="sign">
+
+            MASTER BUILDER
+
+            <br>
+
+            LEVEL 17
+
+            <div class="trophy">🏆</div>
+
+        </div>
+
+
+
+        <div class="minifig-wrap">
+
+            <div class="minifig">
+
+                <div class="hair"></div>
+
+                <div class="head">
+
+                    <div class="brow left"></div>
+                    <div class="brow right"></div>
+
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+
+                    <div class="smile"></div>
+
+                </div>
+
+                <div class="neck"></div>
+
+                <div class="arm left">
+                    <div class="hand"></div>
+                </div>
+
+                <div class="arm right">
+                    <div class="hand"></div>
+                </div>
+
+                <div class="torso">
+
+                    <div class="flynn">
+                        FLYNN'S
+                    </div>
+
+                    <div class="arcade">
+                        ARCADE
+                    </div>
+
+                </div>
+
+                <div class="hips"></div>
+
+                <div class="legs">
+
+                    <div class="leg">
+                        <div class="foot"></div>
+                    </div>
+
+                    <div class="leg">
+                        <div class="foot"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="cake-area">
+
+            <div class="cake">
+
+                <div class="number17">
+
+                    <div class="one"></div>
+
+                    <div class="seven"></div>
+
+                    <div class="flame flame1"></div>
+                    <div class="flame flame2"></div>
+
+                </div>
+
+                <div class="cake-tier tier1">
+                    <div class="icing"></div>
+                </div>
+
+                <div class="cake-tier tier2">
+                    <div class="icing"></div>
+                </div>
+
+                <div class="cake-tier tier3">
+                    <div class="icing"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="message-card">
+
+        <h2>
+            SAME KID. BIGGER BUILDS.
+        </h2>
+
+        <p>
+
+            We hope 17 brings you
+            <strong>big ideas, great adventures,</strong>
+            plenty of fun, and enough bricks to build
+            anything you can imagine.
+
+            <br><br>
+
+            Keep creating.
+            Keep building.
+            Keep being you.
+
+        </p>
+
+        <div class="love">
+
+            Happy Birthday, Emmitt!
+
+            <br>
+
+            <span class="heart">♥</span>
+
+            Love, Uncle Sammy, Aunt Vonnie, and Gabe
+
+            <span class="heart">♥</span>
+
+        </div>
+
+        <button class="build-button" onclick="megaBuild()">
+
+            🧱 BUILD AGAIN
+
+        </button>
+
+    </section>
+
+</div>
+
+
+<script>
+
+const colors = [
+    "#e5252a",
+    "#ffd21c",
+    "#0868d6",
+    "#139447",
+    "#f58220",
+    "#ffffff"
+];
+
+function makeBrick(extra = false) {
+
+    const brick = document.createElement("div");
+
+    brick.className = "falling-brick";
+
+    brick.style.left =
+        Math.random() * 95 + "vw";
+
+    brick.style.background =
+        colors[Math.floor(Math.random() * colors.length)];
+
+    const scale =
+        extra
+        ? .8 + Math.random() * 1.2
+        : .55 + Math.random() * .8;
+
+    brick.style.transform =
+        `scale(${scale})`;
+
+    brick.style.animationDuration =
+        (extra
+        ? 2.3 + Math.random() * 2
+        : 5 + Math.random() * 5)
+        + "s";
+
+    brick.style.animationDelay =
+        Math.random() * .5 + "s";
+
+    document
+        .getElementById("brickRain")
+        .appendChild(brick);
+
+    setTimeout(() => {
+        brick.remove();
+    }, 11000);
+
+}
+
+
+function confettiBlast() {
+
+    for (let i = 0; i < 50; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className =
+            "confetti";
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.animationDuration =
+            2 + Math.random() * 3 + "s";
+
+        piece.style.animationDelay =
+            Math.random() * .5 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+            piece.remove();
+        }, 6000);
+
+    }
+
+}
+
+
+function megaBuild() {
+
+    for (let i = 0; i < 45; i++) {
+
+        setTimeout(() => {
+
+            makeBrick(true);
+
+        }, i * 55);
+
+    }
+
+    confettiBlast();
+
+}
+
+
+/* Gentle constant brick rain */
+
+setInterval(() => {
+
+    makeBrick(false);
+
+}, 700);
+
+
+/* Opening celebration */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        megaBuild();
+
+    }, 700);
+
+});
+
+</script>
+
+</body>
+</html>
